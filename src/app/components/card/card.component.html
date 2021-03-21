@@ -1,0 +1,18 @@
+<div class="col-md-7 mx-auto">
+    <div class="card-body rounded border border-5" style="background-color: whitesmoke; position: relative;">
+      <h5 class="card-title">Kredi kartı ile satın alma</h5>
+      <input type="text" [(ngModel)]="firstName" class="form-control" id="nameText" 
+      placeholder="First Name on the card" style="margin-top: 20px;">
+      <input type="text" [(ngModel)]="lastName" class="form-control" id="nameText" 
+      placeholder="Last Name on The Card" style="margin-top: 20px;">
+      <input type="number" [(ngModel)]="cardNumber" class="form-control" id="numberText" 
+      placeholder="Card Number" style="margin-top: 20px;">
+      <input type="number" [(ngModel)]="cvvNumber" class="form-control" id="cvvText" 
+      placeholder="Cvv" style="margin-top: 20px;">
+      <input type="date" [(ngModel)]="expireDate" class="form-control" id="numberText" 
+      placeholder="Expire Date" style="margin-top: 20px;">
+      <button type="button" class="btn btn-success" style="position:absolute; bottom:20px; right:20px;" (click)="rent()">Kirala</button>
+      <br><br>
+      <p> </p>
+    </div>
+</div>

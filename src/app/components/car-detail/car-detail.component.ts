@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
+import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { Rental } from 'src/app/models/rental';
 import { CarDetailService } from 'src/app/services/car-detail.service';
 import { CarService } from 'src/app/services/car.service';
+import { RentalService } from 'src/app/services/rental.service';
 import { __param } from 'tslib';
 
 @Component({
@@ -14,9 +19,20 @@ import { __param } from 'tslib';
 export class CarDetailComponent implements OnInit {
 
   cars:Car[]
+  car:Car
   carImages:CarImage[];
+  rentals:Rental[] = [];
   baseUrl:string  = "https://localhost:44304"
-  constructor(private carService:CarService, private activatedRoute:ActivatedRoute,private carDetailService:CarDetailService) { }
+  rentable:boolean;
+  rental:Rental;
+  
+  constructor(
+    private carService:CarService, 
+    private activatedRoute:ActivatedRoute,
+    private carDetailService:CarDetailService, 
+    private rentalService:RentalService,
+    private router:Router,
+    private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -24,7 +40,7 @@ export class CarDetailComponent implements OnInit {
         this.getCarImagesByCarId(params["carId"])
         this.getCarDetails(params["carId"])
       }
-    })
+    })    
   }
 
   getCarDetails(carId:number){
@@ -39,9 +55,11 @@ export class CarDetailComponent implements OnInit {
     });
   }
 
-  //getImageSrc(image:CarImage){
-  //  return this.baseUrl + "/" + image.imagePath; 
-  //}
+  getRentalsByCarId(carId:number){
+    this.rentalService.getRentalsByCarId(carId).subscribe(response=>{
+      this.rentals = response.data
+    })
+  }
 
   getSliderClassName(index:Number){
     if(index == 0){
@@ -50,4 +68,6 @@ export class CarDetailComponent implements OnInit {
       return "carousel-item";
     }
   }
+  
 }
+

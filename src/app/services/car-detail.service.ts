@@ -11,8 +11,9 @@ import { ListResponseModel } from '../models/listResponseModel';
 export class CarDetailService {
 
   apiUrl = "https://localhost:44304/api/"
-  constructor(private httpClient:HttpClient) { }
 
+  constructor(private httpClient:HttpClient) { }
+  
   getCarDetails(carId:number):Observable<ListResponseModel<Car>>{
     let newPath = this.apiUrl+"cars/getcardetailsbyid?carId=" + carId
     return this.httpClient.get<ListResponseModel<Car>>(newPath)
@@ -27,4 +28,7 @@ export class CarDetailService {
     let newPath=this.apiUrl+"carImages/getbycarid?carId="+carId
     return this.httpClient.get<ListResponseModel<CarImage>>(newPath)
   }
+
+
+  
 }

@@ -1,21 +1,19 @@
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  <div class="carousel-indicators" *ngFor="let image of carImages">
+    <button type="button" data-bs-target="#carouselExampleIndicators" aria-current="true" aria-label="Slide 1"></button>
+  </div>
+  <div class="carousel-inner align-self-stretch">
+    <div *ngFor="let image of carImages; let i=index" [class]="getSliderClassName(i)">
+      <img src="{{baseUrl}}/{{image.imagePath}}" class="img-thumbnail d-block w-100">
     </div>
-    <div class="carousel-inner">
-      <div *ngFor="let image of carImages; let i=index" [class]="getSliderClassName(i)">
-        <img width="200" height="300" src="{{baseUrl}}/{{image.imagePath}}" class="d-block w-100" >
-      </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
   </div>
 
   <div class="accordion-body">
@@ -26,13 +24,18 @@
             <th>Color</th>
             <th>Model</th>
             <th>Daily Price</th>
+            <th></th>
           </tr>
         </thead>
-        <tr *ngFor="let car of cars">
-          <td>{{ car.brandName }}</td>
-          <td>{{ car.colorName }}</td>
-          <td>{{ car.modelYear }}</td>
-          <td>{{ car.dailyPrice }}</td>
-        </tr>
+        <tbody>
+          <tr *ngFor="let car of cars; let i=index">
+            <td>{{ car.brandName }}</td>
+            <td>{{ car.colorName }}</td>
+            <td>{{ car.modelYear }}</td>
+            <td>{{ car.dailyPrice }}</td>
+            <td><button routerLink="/rentals/{{car.carId}}" type="button" class="btn btn-success">Rent</button></td>
+          </tr>
+        </tbody>
       </table>
   </div> 
+</div>

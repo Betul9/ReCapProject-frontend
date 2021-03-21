@@ -11,7 +11,7 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandComponent implements OnInit {
 
   brands:Brand[] = [];
-  currentBrand:Brand;
+  selectedBrand:number;
 
   constructor(private brandService:BrandService) { }
 
@@ -28,30 +28,31 @@ export class BrandComponent implements OnInit {
     })
   }
 
-  setCurrentBrand(brand:Brand){
-    this.currentBrand = brand;
-  }
 
-  removeCurrentBrand(){
-    this.currentBrand = {brandId:-1,brandName:""}
-  }
+  // setCurrentBrand(brand:Brand){
+  //   this.currentBrand = brand;
+  // }
 
-  getCurrentBrandClass(brand:Brand){
-    if(brand == this.currentBrand){
-      return "list-group-item cursorPointer active"
-    }
-    else{
-      return "list-group-item cursorPointer"
-    }
-  }
+  // removeCurrentBrand(){
+  //   this.currentBrand = {brandId:-1,brandName:""}
+  // }
 
-  getAllBrandClass(){
-    let defaultBrand:Brand = {brandId:-1,brandName:""}
-    if(this.currentBrand.brandId == defaultBrand.brandId){
-      return "list-group-item cursorPointer active"
-    }
-    else{
-      return "list-group-item cursorPointer"
-    }
-  }
+  // getCurrentBrandClass(brand:Brand){
+  //   if(brand == this.currentBrand){
+  //     return "list-group-item cursorPointer active"
+  //   }
+  //   else{
+  //     return "list-group-item cursorPointer"
+  //   }
+  // }
+
+  // getAllBrandClass(){
+  //   let defaultBrand:Brand = {brandId:-1,brandName:""}
+  //   if(this.currentBrand.brandId == defaultBrand.brandId){
+  //     return "list-group-item cursorPointer active"
+  //   }
+  //   else{
+  //     return "list-group-item cursorPointer"
+  //   }
+  // }
 }

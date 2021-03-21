@@ -1,24 +1,38 @@
-<div *ngIf="dataLoaded == false" class="spinner-border text-danger" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>
-<table *ngIf="dataLoaded == true" class="table">
-    <thead>
-        <tr>
-            <th>Rental Id</th>
-            <th>Car Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Rent Date</th>
-            <th>Return Date</th>
-        </tr>
-    </thead>
-    <tr *ngFor="let rental of rentals">
-        <td>{{rental.rentalId}}</td>
-        <td>{{rental.carId}}</td>
-        <td>{{rental.firstName}}</td>
-        <td>{{rental.lastName}}</td>
-        <td>{{rental.rentDate}}</td>
-        <td>{{rental.returnDate}}</td>
+<tbody>
+    <tr>
+      <th scope="row">Brand</th>
+      <td>{{ car.brandName }}</td>
     </tr>
-  </table>
+    <tr>
+      <th scope="row">Car Id</th>
+      <td>{{ car.carId}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Renk</th>
+      <td>{{ car.colorName }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Model Year</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">Description</th>
+      <td>{{ car.description }}</td>
+    </tr>
+  </tbody>
+
+  <div class="mt-5">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Start Date</label>
+        <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="start-date" [(ngModel)]="startDate">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">End Date</label>
+        <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="end-date" [(ngModel)]="endDate">
+    </div>
+   </div>
+   <div *ngIf="checkIfDatesEntered()" class="alert alert-warning mt-3" role="alert">
+    Please enter rent and delivery dates
+  </div>
+  <button type="button" (click)="setRentable()" class="btn btn-success">Rent</button>
   
