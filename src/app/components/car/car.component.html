@@ -2,11 +2,11 @@
     <span class="visually-hidden">Loading...</span>
 </div>
 
-<div class="mb-3 d-flex flex-row">
-  <label for="exampleFormControlInput1" class="form-label"></label>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Search</label>
   <input [(ngModel)]="filterText" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Search">
-  <button type="button" class="btn btn-success ms-2">Search</button>
 </div>
+<button type="button" class="btn btn-success mb-2">Search</button>
 <div *ngIf="filterText.length>0" class="alert alert-success mt-2">
   {{filterText}} is searched
 </div>
