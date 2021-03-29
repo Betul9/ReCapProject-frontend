@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
+import { DialogModule } from '@progress/kendo-angular-dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,10 @@ import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarUpdateComponent } from './components/car-update/car-update.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -37,6 +42,9 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
     ColorAddComponent,
     CarAddComponent,
     CarUpdateComponent,
+    LoginComponent,
+    RegisterComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +54,8 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: "toast-bottom-right"
-    })
+    }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

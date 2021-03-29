@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Car } from '../models/car';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
+import { SingleResponseModel } from '../models/singleResponseModel';
 import { ColorService } from './color.service';
 
 
@@ -45,5 +46,10 @@ export class CarService {
   update(car:Car):Observable<ResponseModel>{
     let newPath=this.apiUrl + "cars/update"
     return this.httpClient.post<ResponseModel>(newPath, car)
+  }
+
+  getCarFindeksScore(carId:number){
+    let newPath=this.apiUrl+"cars/getfindeksscore?carId=" + carId;
+    return this.httpClient.get(newPath)
   }
 }

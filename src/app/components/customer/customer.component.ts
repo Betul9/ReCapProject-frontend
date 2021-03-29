@@ -17,13 +17,13 @@ export class CustomerComponent implements OnInit {
   dataLoaded = false;
 
   ngOnInit(): void {
-    this.getCustomers();
+    //this.getCustomers();
   }
 
-  getCustomers(){
-    this.customerService.getCustomers().subscribe(response=>{
-      this.customers = response.data;
-      this.dataLoaded = true;
-    })
-  }
+  // getCustomers(){
+  //   this.customerService.getCustomers().subscribe(response=>{
+  //     this.customers = response.data;
+  //     this.dataLoaded = true;
+  //   })
+  // }
 }

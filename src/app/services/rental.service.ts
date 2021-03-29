@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Car } from '../models/car';
 import { CarImage } from '../models/carImage';
+import { Customer } from '../models/customer';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Rental } from '../models/rental';
 import { ResponseModel } from '../models/responseModel';
@@ -26,21 +27,6 @@ export class RentalService {
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
   }
 
-  // getCarDetails(carId:number):Observable<ListResponseModel<Car>>{
-  //   let newPath = this.apiUrl+"cars/getcardetailsbyid?carId=" + carId
-  //   return this.httpClient.get<ListResponseModel<Car>>(newPath)
-  // }
-
-  // getCarImages():Observable<ListResponseModel<CarImage>>{
-  //   let newPath=this.apiUrl+"carImages/getall"
-  //   return this.httpClient.get<ListResponseModel<CarImage>>(newPath)
-  // }
-
-  // getCarImagesByCarId(carId:number):Observable<ListResponseModel<CarImage>>{
-  //   let newPath=this.apiUrl+"carImages/getbycarid?carId="+carId
-  //   return this.httpClient.get<ListResponseModel<CarImage>>(newPath)
-  // }
-
   isRentable(rental:Rental):Observable<ResponseModel>{
     const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(rental);
@@ -54,5 +40,29 @@ export class RentalService {
     let newPath = this.apiUrl + "rentals/add"
     console.log("ok")
     return this.httpClient.post<ResponseModel>(newPath, body, {'headers': headers})
+  }
+
+  getCarFindeksScore(carId:number){
+    return this.httpClient.get(this.apiUrl + "cars/getfindeksscore?carId=" + carId);
+  }
+
+  getCustomerFindeksScore(customerId:number){
+    return this.httpClient.get(this.apiUrl + "customers/getfindeksscore?customerId=" + customerId);
+  }
+
+  isFindeksScoreEnough(carId:number, customerId:number){
+    let carFindeks = this.getCarFindeksScore(carId);
+    let customerFindeks = this.getCustomerFindeksScore(customerId);
+    if(customerFindeks>=carFindeks){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  getCustomerDetails(customerId:number):Observable<ListResponseModel<Customer>>{
+    let newPath = this.apiUrl + "/customers/getcustomerdetails?customerId=" + customerId;
+    return this.httpClient.get<ListResponseModel<Customer>>(newPath)
   }
 }

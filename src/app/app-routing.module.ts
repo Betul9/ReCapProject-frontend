@@ -7,7 +7,11 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
 import { CarComponent } from './components/car/car.component';
 import { CardComponent } from './components/card/card.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {path:"", pathMatch:"full", component:CarComponent},
@@ -20,8 +24,11 @@ const routes: Routes = [
   {path:"cards/:rental", component:CardComponent},
   {path:"color-add", component:ColorAddComponent},
   {path:"brand-add", component:BrandAddComponent},
-  {path:"car-add", component:CarAddComponent},
-  {path:"car-update/:car",component:CarUpdateComponent}
+  {path:"car-add", component:CarAddComponent, canActivate:[LoginGuard]},
+  {path:"car-update/:car",component:CarUpdateComponent},
+  {path:"login", component:LoginComponent},
+  {path:"register", component:RegisterComponent},
+  {path:"profile/:email", component:UserComponent}
 ];
 
 @NgModule({
